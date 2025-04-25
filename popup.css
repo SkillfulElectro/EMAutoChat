@@ -1,0 +1,254 @@
+/* popup.css */
+:root {
+  --primary-color: #58a6ff; /* Brighter blue for dark mode */
+  --secondary-color: #30363d; /* Dark grey for secondary elements */
+  --background-color: #0d1117; /* Very dark background */
+  --section-background: #161b22; /* Slightly lighter section background */
+  --text-color: #c9d1d9; /* Light grey text */
+  --text-muted-color: #8b949e; /* Dimmer text for info/status */
+  --border-color: #30363d; /* Dark grey borders */
+  --input-background: #0d1117; /* Match background for inputs */
+  --button-primary-text: #ffffff;
+  --button-secondary-text: #c9d1d9;
+  --danger-color: #f85149; /* Red for stop/error states */
+  --danger-hover-color: #da3633;
+  --success-color: #3fb950; /* Green for connected state */
+  --connecting-color: #d29922; /* Yellow for connecting state */
+  --border-radius: 6px; /* Slightly more modern radius */
+  --spacing-unit: 8px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: var(--text-color);
+  margin: 0;
+  width: 450px; /* Increased width */
+  min-height: 550px; /* Adjusted min-height for new section */
+  background-color: var(--background-color);
+  overflow: hidden; /* Explicitly hide scrollbars */
+}
+
+.container {
+  display: flex;
+  padding: var(--spacing-unit);
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.column {
+  padding: var(--spacing-unit);
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Allow columns to fill height */
+  box-sizing: border-box;
+}
+
+.left-column {
+  width: 45%;
+  border-right: 1px solid var(--border-color);
+  padding-right: calc(var(--spacing-unit) * 2);
+}
+
+.right-column {
+  width: 55%;
+  padding-left: calc(var(--spacing-unit) * 2);
+}
+
+.section {
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  padding: calc(var(--spacing-unit) * 1.5);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--section-background);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+
+h3 {
+  margin-top: 0;
+  margin-bottom: calc(var(--spacing-unit) * 1.5);
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--primary-color);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: var(--spacing-unit);
+}
+
+label {
+  display: block;
+  margin-bottom: var(--spacing-unit);
+  font-weight: 500;
+  color: var(--text-muted-color); /* Muted color for labels */
+}
+
+input[type="number"],
+input[type="text"],
+input[type="url"],
+textarea {
+  width: 100%;
+  padding: var(--spacing-unit);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  margin-top: calc(var(--spacing-unit) / 2);
+  font-family: inherit;
+  font-size: 1em;
+  background-color: var(--input-background);
+  color: var(--text-color);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-muted-color);
+    opacity: 0.7;
+}
+
+input[type="text"]:read-only {
+  background-color: var(--secondary-color);
+  cursor: pointer;
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+  margin-bottom: var(--spacing-unit); /* Add margin below textareas */
+}
+
+#extractedOutputArea {
+  min-height: 100px; /* Adjusted height */
+  background-color: var(--input-background);
+  font-family: monospace;
+  font-size: 0.9em;
+  color: var(--text-muted-color);
+}
+
+button {
+  padding: var(--spacing-unit) calc(var(--spacing-unit) * 1.5);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 0.95em;
+  font-weight: 500;
+  transition: background-color 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
+  margin-top: var(--spacing-unit);
+  margin-right: var(--spacing-unit);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.button-primary {
+  background-color: var(--primary-color);
+  color: var(--button-primary-text);
+}
+
+.button-primary:hover:not(:disabled) {
+  background-color: #6cb6ff; /* Lighter blue on hover */
+}
+
+.button-secondary {
+  background-color: var(--secondary-color);
+  color: var(--button-secondary-text);
+  border: 1px solid var(--border-color);
+}
+
+.button-secondary:hover:not(:disabled) {
+  background-color: #404750; /* Slightly lighter grey on hover */
+  border-color: #505760;
+}
+
+/* Style for 'Stop Extraction' state */
+#toggleExtractionBtn[style*="background-color: var(--danger-color)"]
+{
+    background-color: var(--danger-color);
+    color: white;
+    border: 1px solid var(--danger-color);
+}
+#toggleExtractionBtn[style*="background-color: var(--danger-color)"]:hover:not(:disabled)
+{
+    background-color: var(--danger-hover-color);
+    border-color: var(--danger-hover-color);
+}
+
+/* Style for 'Disconnect' state */
+#connectServerBtn.connected[style*="background-color: var(--danger-color)"]
+{
+    background-color: var(--danger-color);
+    color: white;
+    border: 1px solid var(--danger-color);
+}
+#connectServerBtn.connected[style*="background-color: var(--danger-color)"]:hover:not(:disabled)
+{
+    background-color: var(--danger-hover-color);
+    border-color: var(--danger-hover-color);
+}
+
+
+.info-text {
+  font-style: italic;
+  color: var(--text-muted-color);
+  font-size: 0.9em;
+  word-wrap: break-word;
+  margin-top: var(--spacing-unit);
+  margin-bottom: var(--spacing-unit);
+  min-height: 1.2em; /* Prevent layout shifts */
+}
+
+#statusMessage {
+  font-size: 0.9em;
+  margin-top: var(--spacing-unit);
+  color: var(--text-muted-color);
+  min-height: 1.2em; /* Prevent layout shifts */
+  text-align: left; /* Align with other elements */
+}
+
+#connectionStatus {
+  font-weight: 500; /* Make status slightly bolder */
+  font-style: normal; /* Remove italic style */
+}
+
+#connectionStatus.status-connected {
+    color: var(--success-color);
+}
+#connectionStatus.status-connecting {
+    color: var(--connecting-color);
+}
+#connectionStatus.status-error {
+    color: var(--danger-color);
+}
+#connectionStatus.status-disconnected {
+    color: var(--text-muted-color);
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  margin-bottom: calc(var(--spacing-unit) / 2);
+  font-weight: normal;
+  color: var(--text-color); /* Use regular text color for radio labels */
+}
+
+input[type="radio"] {
+  margin-right: var(--spacing-unit);
+  margin-top: 0;
+  accent-color: var(--primary-color); /* Style the radio button itself */
+}
+
+.hidden {
+  display: none;
+}
+
+/* Minor layout adjustments */
+.section h3 + label, /* Add slight space between heading and first label */
+.section .radio-group + button, /* Add space between radio group and button below */
+.section textarea + button /* Add space between textarea and button below */
+ {
+  margin-top: var(--spacing-unit);
+}
+
+.section label + input, /* Align input spacing */
+.section label + textarea {
+    margin-top: calc(var(--spacing-unit) / 2);
+}

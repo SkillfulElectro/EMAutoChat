@@ -1,0 +1,73 @@
+<!-- popup.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Element Interaction</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="column left-column">
+      <div class="section">
+        <h3>Output Extraction</h3>
+        <label for="intervalInput">Extraction Interval (seconds):</label>
+        <input type="number" id="intervalInput" min="1" value="5">
+        <button id="selectOutputAreaBtn" class="button-secondary">Select Output Area</button>
+        <p id="outputAreaInfo" class="info-text">Output area not selected.</p>
+        <button id="toggleExtractionBtn" class="button-primary">Start Extraction</button>
+        <label for="extractedOutputArea" style="margin-top: 10px;">Extracted Content (JSON):</label>
+        <textarea id="extractedOutputArea" readonly placeholder="Extracted content will appear here..."></textarea>
+      </div>
+
+      <div class="section">
+        <h3>WebSocket Connection</h3>
+        <label for="serverUrlInput">Server URL:</label>
+        <input type="url" id="serverUrlInput" placeholder="ws://<host> or wss://<host>">
+        <button id="connectServerBtn" class="button-primary">Connect</button>
+        <p id="connectionStatus" class="info-text status-disconnected">Status: Disconnected</p>
+      </div>
+
+    </div>
+
+    <div class="column right-column">
+      <div class="section">
+        <h3>1. Select Chat Input</h3>
+        <button id="selectTextboxBtn" class="button-secondary">Select Textbox Element</button>
+        <p id="textboxInfo" class="info-text">Chat input textbox not selected.</p>
+      </div>
+
+      <div class="section">
+        <h3>2. Select Send Method</h3>
+        <div class="radio-group">
+          <label>
+            <input type="radio" name="sendActionType" value="button" id="modeSelectButton" checked> Click Send Button
+          </label>
+          <label>
+            <input type="radio" name="sendActionType" value="keyCombination" id="modeKeyCombination"> Use Key Combination
+          </label>
+        </div>
+        <button id="selectSendBtn" class="button-secondary">Select Send Button Element</button>
+        <input type="text" id="keyCombinationInput" class="hidden" placeholder="Click here, then press keys..." readonly>
+        <p id="sendActionInfo" class="info-text">Method: Click Button. No button selected.</p>
+      </div>
+
+      <div class="section">
+        <h3>3. Manual Send</h3>
+        <label for="messageInput">Message:</label>
+        <textarea id="messageInput" placeholder="Enter message to send manually..."></textarea>
+        <button id="sendMessageBtn" class="button-primary">Send Message</button>
+        <p id="statusMessage"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/ui.js"></script>
+  <script src="js/selection.js"></script>
+  <script src="js/extraction.js"></script>
+  <script src="js/messaging.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/key_combination.js"></script>
+  <script src="js/connection.js"></script>
+  <script src="js/popup_init.js"></script>
+</body>
+</html>
